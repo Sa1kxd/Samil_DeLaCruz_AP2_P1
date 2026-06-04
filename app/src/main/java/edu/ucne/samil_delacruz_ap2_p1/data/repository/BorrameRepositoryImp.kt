@@ -6,7 +6,7 @@ import javax.inject.Inject
 import edu.ucne.samil_delacruz_ap2_p1.domain.repository.BorrameRepository
 import kotlinx.coroutines.flow.Flow
 
-class BorrameRepositoryImpl @Inject constructor(private val localDataSource: BorrameDao): BorrameRepository {
+/*class BorrameRepositoryImpl @Inject constructor(private val localDataSource: BorrameDao): BorrameRepository {
     override fun observe(): Flow<List<Borrame>>
     {
     }
@@ -26,4 +26,4 @@ class BorrameRepositoryImpl @Inject constructor(private val localDataSource: Bor
     override suspend fun  exists(id: Int): Boolean
     {
     }
-}
+}*/

@@ -8,11 +8,12 @@ plugins {
 }
 
 android {
-    namespace = "du.ucne.samil_delacruz_ap2_p1"
+    namespace = "edu.ucne.samil_delacruz_ap2_p1"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "du.ucne.samil_delacruz_ap2_p1"
+        // 1. Corregido el "du." por "edu." para evitar el crasheo
+        applicationId = "edu.ucne.samil_delacruz_ap2_p1"
         minSdk = 26
         targetSdk = 36
         versionCode = 1
@@ -34,12 +35,14 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlin {
-        jvmToolchain(17)
-    }
     buildFeatures {
         compose = true
     }
+}
+
+// 2. Movido AFUERA del bloque android { ... }
+kotlin {
+    jvmToolchain(17)
 }
 
 room {
@@ -74,11 +77,11 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.compose)
 
-    // Navigation Compose (needed for our NavHost)
+    // Navigation Compose
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.hilt.navigation.compose)
 
-    // Serialization (needed for navigation screens)
+    // Serialization
     implementation(libs.kotlinx.serialization.json)
 
     testImplementation(libs.junit)

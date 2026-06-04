@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import dagger.hilt.android.AndroidEntryPoint
+import edu.ucne.samil_delacruz_ap2_p1.presentation.navigation.AppNavHost
 import edu.ucne.samil_delacruz_ap2_p1.ui.theme.Samil_DeLaCruz_AP2_P1Theme
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -20,29 +21,25 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Samil_DeLaCruz_AP2_P1Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                AppNavHost()
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Samil_DeLaCruz_AP2_P1Theme {
-        Greeting("Android")
+    @Composable
+    fun Greeting(name: String, modifier: Modifier = Modifier) {
+        Text(
+            text = "Hello $name!",
+            modifier = modifier
+        )
+    }
+
+    @Preview(showBackground = true)
+    @Composable
+    fun GreetingPreview() {
+        Samil_DeLaCruz_AP2_P1Theme {
+            Greeting("Android")
+        }
     }
 }
