@@ -2,13 +2,12 @@ package edu.ucne.samil_delacruz_ap2_p1.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import edu.ucne.samil_delacruz_ap2_p1.presentation.form.BorrameFormScreen
-import edu.ucne.samil_delacruz_ap2_p1.presentation.list.ListBorrameScreen
+import androidx.navigation.toRoute
+import edu.ucne.samil_delacruz_ap2_p1.presentation.list.ListAdmonestacionScreen
+import edu.ucne.samil_delacruz_ap2_p1.presentation.form.AdmonestacionesFormScreen
 
 @Composable
 fun AppNavHost(
@@ -16,30 +15,24 @@ fun AppNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = "borrame_list"
+        startDestination = Screen.AdmonestacionesList
     ) {
-        composable("borrame_list") {
-            ListBorrameScreen(
-                onAddBorrame = {
-                    navController.navigate("borrame_form/0")
+        composable<Screen.AdmonestacionesList> {
+            ListAdmonestacionScreen(
+                onAddAdmonestacion = {
+                    navController.navigate(Screen.AdmonestacionesForm(id = 0))
                 },
                 onNavigateToEdit = { id ->
-                    navController.navigate("borrame_form/$id")
+                    navController.navigate(Screen.AdmonestacionesForm(id = id))
                 }
             )
         }
 
-        composable(
-            route = "borrame_form/{id}",
-            arguments = listOf(navArgument("id") { type = NavType.IntType })
-        ) { backStackEntry ->
-            BorrameFormScreen(
+        composable<Screen.AdmonestacionesForm> { backStackEntry ->
+
+            AdmonestacionesFormScreen(
                 onBack = {
-                    navController.navigate("borrame_list") {
-                        popUpTo("borrame_list") {
-                            inclusive = true
-                        }
-                    }
+                    navController.navigateUp()
                 }
             )
         }
